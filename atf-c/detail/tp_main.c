@@ -29,6 +29,7 @@
 
 #include <ctype.h>
 #include <stdarg.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -280,6 +281,10 @@ list_tcs(const atf_tp_t *tp)
 
         atf_utils_free_charpp(vars);
     }
+
+#define UNCONST(a) ((void *)(uintptr_t)(const void *)(a))
+    free(UNCONST(tcs));
+#undef UNCONST
 }
 
 /* ---------------------------------------------------------------------
